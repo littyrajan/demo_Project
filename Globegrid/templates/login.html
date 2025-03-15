@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <style>
+        body {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+        }
+        .registration-form {
+            margin: 0 auto;
+            background: #ffffff;
+            color: #000;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 10px rgba(38, 143, 255, 0.5);
+            border-color: #268fff;
+        }
+        .form-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .form-header h2 {
+            font-weight: bold;
+        }
+        .form-header p {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .btn-custom {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            border: none;
+            transition: background 0.3s ease;
+        }
+        .btn-custom:hover {
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
+        }
+        .text-muted {
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+  <div class="registration-form">
+        <div class="form-header">
+            <h2>Login Account</h2>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+            <div class="mb-3">
+              <label class="form-label">Username<span class="required">*</span></label>
+              <input type="text" class="form-control" name="username"  placeholder="Enter your username" required/>
+            </div>
+
+            <div class="item">
+              <label class="form-label">Password<span class="required">*</span></label>
+              <input type="password" class="form-control" name="password" placeholder="Enter your password" required/>
+            </div>
+            <br>
+            <button class="btn btn-custom w-100" type="submit"> Login Now </button>
+
+            <div class="text-muted">
+                Create an account? <a href="{% url 'shop:user_register' %}" class="text-primary">Register</a>
+            </div>
+        </form>
+    </div>
+
+<br>
+<br>
+<br>
+
+</body>
+
+
+    {% endblock %}

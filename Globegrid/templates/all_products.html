@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<h1>Shop</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- products -->
+	<div class="product-section mt-80 mb-150">
+		<div class="container">
+			<div class="row product-lists" >
+				{% for i in c %}
+				<div class="col-lg-4 col-md-6 text-center">
+					<div class="single-product-item">
+						<div class="product-image">
+							<a href="single-product.html"><img src="{{i.image.url}}"  height="200px" alt=""></a>
+						</div>
+						<h3>{{i.name}}</h3>
+						<a href="{% url 'shop:products' i.id %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> View Products</a>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+				<!-- breadcrumb-section -->
+			<div class="breadcrumb-section breadcrumb-bg p-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8 offset-lg-2 text-center">
+							<div class="breadcrumb-text">
+								<h1>Shop Products</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+				<br><br>
+
+	<!-- end breadcrumb section -->
+			<div class="row product-lists" >
+				{% for i in p %}
+				<div class="col-lg-4 col-md-2 text-center" >
+					<div class="single-product-item p-5" style="height:250px">
+						<h3>{{i.name}}</h3>
+						<p class="product-price">{{i.price}}$</p>
+						<a href="{% url 'shop:single_product' i.id %}" class="cart-btn"><i class="fas fa-shopping-cart"></i>Details</a>
+					</div>
+				</div>
+				<br>
+				{% endfor %}
+			</div>
+
+
+		</div>
+	</div>
+	<!-- end products -->
+
+    {% endblock %}

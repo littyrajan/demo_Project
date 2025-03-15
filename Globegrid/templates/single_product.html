@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>See more Details</p>
+						<h1>Single Product</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- single product -->
+	<div class="single-product mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5">
+					<div class="single-product-img">
+						<img src="{{Product.image.url}}" alt="">
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div class="single-product-content">
+						<h3>{{Product.name}}</h3>
+						<p class="single-product-pricing"> ${{Product.price}}</p>
+						<p>{{Product.description}}</p>
+
+						<h5>Stock : {{Product.stock}}</h5>
+
+						<p><strong>Categories: </strong>{{Product.category}}</p>
+
+						{% if user.is_superuser == True %}
+							{% if Product.stock > 0 %}
+								<h3 class="text-success">Product in Stock</h3>
+								<a href="{% url 'shop:add_stock' Product.id %}" class="btn_1">Add Stock</a>
+							{% else %}
+								<h3 class="text-danger">Out of Stock</h3>
+								<a href="{% url 'shop:add_stock' Product.id %}" class="btn_1">Add Stock</a>
+							{% endif %}
+
+						{% else %}
+							{% if Product.stock > 0 %}
+								<a href="{% url 'cart:add_to_cart' Product.id %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+							{% else %}
+								<h4 class="text-danger">Out of Stock</h4>
+							{% endif %}
+						{% endif %}
+					</div>
+						<br>
+						<br>
+						<h4>Share : </h4>
+						<ul class="product-share">
+							<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href=""><i class="fab fa-twitter"></i></a></li>
+							<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+							<li><a href=""><i class="fab fa-linkedin"></i></a></li>
+						</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- end single product -->
+
+{% endblock %}
